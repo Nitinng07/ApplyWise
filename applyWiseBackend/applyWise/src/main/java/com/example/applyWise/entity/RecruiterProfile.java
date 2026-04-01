@@ -5,33 +5,97 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name = "recruiter_profile")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name= "recruiter_profile")
 public class RecruiterProfile {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id ;
 	
 	private String companyName ;
-	private String companyDescription;
+	private String companyDescription ;
 	private String website ;
 	private String location ;
 	
 	@OneToOne
-	@JoinColumn(name="user_id" , nullable = false)
-	private Users user ;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+	
+
+	public RecruiterProfile() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public RecruiterProfile(Long id, String companyName, String companyDescription, String website, String location,
+			User user) {
+		super();
+		this.id = id;
+		this.companyName = companyName;
+		this.companyDescription = companyDescription;
+		this.website = website;
+		this.location = location;
+		this.user = user;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getCompanyDescription() {
+		return companyDescription;
+	}
+
+	public void setCompanyDescription(String companyDescription) {
+		this.companyDescription = companyDescription;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "RecruiterProfile [id=" + id + ", companyName=" + companyName + ", companyDescription="
+				+ companyDescription + ", website=" + website + ", location=" + location + ", user=" + user + "]";
+	}
+	
+	
+
 }
